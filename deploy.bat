@@ -42,7 +42,7 @@ git commit -m "Site Update: %date% %time%"
 
 :: 推送到 GitHub (假设远程仓库名叫 origin，分支叫 main 或 master)
 :: 如果你的 GitHub 主分支叫 main，请把下面的 master 改成 main
-git push origin master
+git push origin main
 
 if %errorlevel% neq 0 (
     color 0E
