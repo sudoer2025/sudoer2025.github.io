@@ -1,62 +1,22 @@
 @echo off
-:: 设置编码为 UTF-8，防止中文乱码
-chcp 65001 >nul
-title Hexo 博客一键发布与备份神器
-color 0A
+title Hexo WSL Deploy
+echo Starting deployment via WSL...
 
-echo =======================================================
-echo        🚀 正在启动 Hexo 自动发布程序...
-echo =======================================================
-echo.
+:: Check if we are in the right folder (optional but safe)
+:: Execute the Linux commands via WSL
+:: 1. Go to path /mnt/f/my-blog
+:: 2. Clean -> Generate -> Deploy -> Git Backup
 
-:: ---------------------------------------------------------
-:: 第一步：生成并发布到网站 (VPS)
-:: ---------------------------------------------------------
-echo [1/2] 正在清理缓存并生成新页面...
-call hexo clean
-call hexo g
-
-echo.
-echo [1/2] 正在发布到 sudoer2025.top ...
-call hexo d
+wsl bash -c "cd /mnt/f/my-blog && echo '[WSL] Cleaning...' && hexo clean && echo '[WSL] Generating...' && hexo g && echo '[WSL] Deploying...' && hexo d && echo '[WSL] Backing up...' && git add . && git commit -m 'Auto update' && git push origin main"
 
 if %errorlevel% neq 0 (
-    color 0C
     echo.
-    echo [ERROR] ❌ 发布网站失败！请检查上面的报错信息。
+    echo [ERROR] Something went wrong!
+    echo Please verify that your blog is actually at F:\my-blog
     pause
     exit /b
 )
-echo.
-echo [SUCCESS] ✅ 网站发布成功！大家都能看到了。
-echo.
-
-:: ---------------------------------------------------------
-:: 第二步：备份源码到 GitHub
-:: ---------------------------------------------------------
-echo [2/2] 正在把源码备份到 GitHub ...
-
-:: 1. 把所有修改放入暂存区
-git add .
-
-:: 2. 提交修改 (自动加上当前时间)
-git commit -m "Site Update: %date% %time%"
-
-:: 3. 推送到 GitHub (你的本地分支是 main)
-git push origin main
-
-if %errorlevel% neq 0 (
-    color 0E
-    echo.
-    echo [WARNING] ⚠️ 备份稍微出了点小问题（可能是因为没有新变动）。
-    echo 如果你是第一次运行，或者 GitHub 上有冲突，请尝试手动解决。
-) else (
-    echo [SUCCESS] ✅ 源码备份成功！数据安全了。
-)
 
 echo.
-echo =======================================================
-echo               🎉 全部搞定！收工！
-echo =======================================================
-echo.
+echo [SUCCESS] All done!
 pause
