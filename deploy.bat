@@ -1,63 +1,62 @@
 @echo off
+:: 设置编码为 UTF-8，防止中文乱码
 chcp 65001 >nul
-title Hexo Blog Auto Deploy & Backup Tool
+title Hexo 博客一键发布与备份神器
 color 0A
 
 echo =======================================================
-echo        正在启动 Hexo 自动发布与备份程序...
+echo        🚀 正在启动 Hexo 自动发布程序...
 echo =======================================================
 echo.
 
 :: ---------------------------------------------------------
-:: 第一步：清理、生成并发布到 VPS 服务器
+:: 第一步：生成并发布到网站 (VPS)
 :: ---------------------------------------------------------
-echo [1/2] 正在清理缓存并生成静态页面...
+echo [1/2] 正在清理缓存并生成新页面...
 call hexo clean
 call hexo g
 
 echo.
-echo [1/2] 正在发布到 VPS (142.171.239.31)...
+echo [1/2] 正在发布到 sudoer2025.top ...
 call hexo d
 
 if %errorlevel% neq 0 (
     color 0C
     echo.
-    echo [ERROR] 发布失败！请检查 VPS 连接或配置。
+    echo [ERROR] ❌ 发布网站失败！请检查上面的报错信息。
     pause
     exit /b
 )
-echo [SUCCESS] VPS 发布成功！网站已更新。
+echo.
+echo [SUCCESS] ✅ 网站发布成功！大家都能看到了。
 echo.
 
 :: ---------------------------------------------------------
-:: 第二步：备份源码到 GitHub (sudoer2025.github.io)
+:: 第二步：备份源码到 GitHub
 :: ---------------------------------------------------------
-echo [2/2] 正在备份源码到 GitHub...
+echo [2/2] 正在把源码备份到 GitHub ...
 
-:: 添加所有文件到暂存区
+:: 1. 把所有修改放入暂存区
 git add .
 
-:: 提交更改，备注包含当前日期和时间
+:: 2. 提交修改 (自动加上当前时间)
 git commit -m "Site Update: %date% %time%"
 
-:: 推送到 GitHub (假设远程仓库名叫 origin，分支叫 main 或 master)
-:: 如果你的 GitHub 主分支叫 main，请把下面的 master 改成 main
+:: 3. 推送到 GitHub (你的本地分支是 main)
 git push origin main
 
 if %errorlevel% neq 0 (
     color 0E
     echo.
-    echo [WARNING] 备份失败！可能原因：
-    echo 1. 你还没有把 GitHub 仓库关联为 origin。
-    echo 2. 网络连接 GitHub 超时。
-    echo 3. 本地代码和远程有冲突（试着先 git pull）。
-    pause
-    exit /b
+    echo [WARNING] ⚠️ 备份稍微出了点小问题（可能是因为没有新变动）。
+    echo 如果你是第一次运行，或者 GitHub 上有冲突，请尝试手动解决。
+) else (
+    echo [SUCCESS] ✅ 源码备份成功！数据安全了。
 )
 
 echo.
 echo =======================================================
-echo               恭喜！发布与备份全部完成！
+echo               🎉 全部搞定！收工！
 echo =======================================================
 echo.
 pause
