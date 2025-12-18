@@ -9,23 +9,25 @@ echo        🚀 Sudoer2025 博客一键发布系统
 echo =======================================================
 echo.
 
+:: 1. 获取更新日志 (如果不填直接回车，默认为 "Daily Update")
 set /p msg="请输入本次更新内容 (直接回车默认 Daily Update): "
 if "%msg%"=="" set msg=Daily Update
 
 echo.
-echo [1/2] 正在备份源码到 GitHub...
+echo [1/2] 正在备份源码到 GitHub (Backup Source)...
 echo -------------------------------------------------------
-:: 这里的改动：bash -l -c (强制加载用户环境，防止 git 报错)
-wsl -d Ubuntu -u sudoer2025 --cd /mnt/f/my-blog bash -l -c "git add . && git commit -m '%msg%' && git push"
+:: 调用 WSL 执行 Git 命令
+:: 注意：-d Ubuntu 是你的 WSL 发行版名字，如果报错请检查 wsl -l
+wsl -d Ubuntu -u sudoer2025 --cd /mnt/f/my-blog bash -c "git add . && git commit -m '%msg%' && git push"
 
 echo.
-echo [2/2] 正在编译并发布到 VPS...
+echo [2/2] 正在编译并发布到 VPS (Deploy Site)...
 echo -------------------------------------------------------
-:: 这里的改动：bash -l -c (关键！如果不加 -l，脚本可能找不到 hexo 命令)
-wsl -d Ubuntu -u sudoer2025 --cd /mnt/f/my-blog bash -l -c "hexo clean && hexo g && hexo d"
+:: 调用 WSL 执行 Hexo 命令
+wsl -d Ubuntu -u sudoer2025 --cd /mnt/f/my-blog bash -c "hexo clean && hexo g && hexo d"
 
 echo.
 echo =======================================================
-echo           🎉 执行结束！请检查上方是否有报错 (红字)
+echo           🎉 恭喜！发布全流程结束！
 echo =======================================================
 pause

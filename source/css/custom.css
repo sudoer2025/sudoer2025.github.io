@@ -1,0 +1,13 @@
+/* 页脚变透明 */
+#footer {
+    background: transparent !important;
+    /* (可选) 加一点点毛玻璃，防文字看不清 */
+    backdrop-filter: blur(5px);
+    /* 如果想让它稍微暗一点点，可以加个半透明黑色遮罩 */
+    /* background: rgba(0, 0, 0, 0.3) !important; */
+}
+
+/* 如果你的全站背景图是深色的，可能需要强制把页脚文字变白 */
+#footer-wrap, #footer-wrap a {
+    color: #ffffff !important;
+}
