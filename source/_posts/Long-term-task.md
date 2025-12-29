@@ -2,7 +2,7 @@
 title: Long-term task
 date: 2025-12-18 21:28:15
 tags:
-sticky: 0
+sticky: 1
 ---
 # 📈 个人长期成长计划 (Personal Long-Term Growth Plan)
 
