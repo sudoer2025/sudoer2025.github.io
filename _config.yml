@@ -65,7 +65,7 @@ index_generator:
   path: ''
   per_page: 10
   # order_by: -date
-  order_by: -sticky
+  order_by: [-sticky, -date] # 明确要求：先按置顶权重排，权重一样再按日期排
 
 # Category & Tag
 default_category: uncategorized
