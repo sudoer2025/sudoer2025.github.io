@@ -1,13 +1,9 @@
 @echo off
-title Hexo WSL Deploy
+title Hexo WSL Deploy (VPS Only)
 echo Starting deployment via WSL...
 
-:: Check if we are in the right folder (optional but safe)
-:: Execute the Linux commands via WSL
-:: 1. Go to path /mnt/f/my-blog
-:: 2. Clean -> Generate -> Deploy -> Git Backup
-
-wsl bash -c "cd /mnt/f/my-blog && echo '[WSL] Cleaning...' && hexo clean && echo '[WSL] Generating...' && hexo g && echo '[WSL] Deploying...' && hexo d && echo '[WSL] Backing up...' && git add . && git commit -m 'Auto update' && git push origin main"
+:: 仅执行 Hexo 的核心发布流程，去掉了 Git 备份部分
+wsl bash -c "cd /mnt/f/my-blog && echo '[WSL] Cleaning...' && hexo clean && echo '[WSL] Generating...' && hexo g && echo '[WSL] Deploying...' && hexo d"
 
 if %errorlevel% neq 0 (
     echo.
@@ -18,5 +14,5 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [SUCCESS] All done!
+echo [SUCCESS] 部署完成！网站已同步至 VPS。
 pause
