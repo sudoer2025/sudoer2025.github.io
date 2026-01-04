@@ -105,4 +105,4 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: root@142.171.239.31:/var/repo/blog.git,master
+  repo: ssh://root@142.171.239.31:38521/var/repo/blog.git,master
