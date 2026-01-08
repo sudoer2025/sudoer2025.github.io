@@ -110,8 +110,4 @@ deploy:
   # Security (文章加密)
 encrypt:
   enable: true
-
-  # 在 _config.yml 最下面添加
-hide_posts:
-  # 设为 true 表示连归档和标签页也隐藏，彻底变成“幽灵文章”
-  filter: public
+  

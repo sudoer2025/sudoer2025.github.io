@@ -30,11 +30,11 @@ hidden: true          # (可选) 配合 hexo-hide-posts 使用，防止在别处
 </style>
 
 <div class="Transformation-link-item">
-  <a href="/2026/01/06/我的秘密基地/">🔒 我的秘密基地 (点击输入二级密码)</a>
-  <span class="Transformation-date">2026-01-06</span>
+  <a href="/2026/01/07/2026-1-7hd/">🔒 2026.1.7</a>
+  <span class="Transformation-date">2026-01-07</span>
 </div>
 
 <div class="Transformation-link-item">
-  <a href="/2025/12/31/跨年吐槽/">🔒 跨年那天的吐槽</a>
-  <span class="Transformation-date">2025-12-31</span>
+  <a href="/2026/01/07/2026-1-7目标hd/">🔒 202617目标</a>
+  <span class="Transformation-date">2026-01-07</span>
 </div>
