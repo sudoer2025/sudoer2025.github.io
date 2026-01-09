@@ -1,13 +1,15 @@
-/* 页脚变透明 */
+/* 1. 设置页脚背景完全透明（无毛玻璃） */
 #footer {
-    background: transparent !important;
-    /* (可选) 加一点点毛玻璃，防文字看不清 */
-    backdrop-filter: blur(5px);
-    /* 如果想让它稍微暗一点点，可以加个半透明黑色遮罩 */
-    /* background: rgba(0, 0, 0, 0.3) !important; */
+    background: transparent !important;       /* 背景色透明 */
+    backdrop-filter: none !important;         /* 关掉模糊滤镜 */
+    -webkit-backdrop-filter: none !important; /* 兼容苹果设备 */
+    box-shadow: none !important;              /* 去掉阴影线条 */
 }
 
-/* 如果你的全站背景图是深色的，可能需要强制把页脚文字变白 */
-#footer-wrap, #footer-wrap a {
-    color: #ffffff !important;
+/* 2. (必选) 强制把页脚文字变成白色 */
+/* 因为背景透明了，如果你的壁纸是深色的，黑色文字就看不见了 */
+#footer-wrap, 
+#footer-wrap a {
+    color: #ffffff !important; /* 纯白文字 */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.8); */ /* (可选) 如果壁纸太花，把这行前面的注释去掉，加点阴影能看清 */
 }
