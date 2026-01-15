@@ -1,15 +1,40 @@
-/* 1. 设置页脚背景完全透明（无毛玻璃） */
-#footer {
-    background: transparent !important;       /* 背景色透明 */
-    backdrop-filter: none !important;         /* 关掉模糊滤镜 */
-    -webkit-backdrop-filter: none !important; /* 兼容苹果设备 */
-    box-shadow: none !important;              /* 去掉阴影线条 */
+/* 强制导航栏在任何状态下（置顶、滚动、回滑）都全透明 */
+#nav, 
+#nav.show, 
+#nav.fixed {
+    background: transparent !important;       /* 背景透明 */
+    backdrop-filter: none !important;         /* 关掉模糊 */
+    -webkit-backdrop-filter: none !important; /* 兼容苹果 */
+    box-shadow: none !important;              /* 关掉阴影线条 */
 }
 
-/* 2. (必选) 强制把页脚文字变成白色 */
-/* 因为背景透明了，如果你的壁纸是深色的，黑色文字就看不见了 */
+/* (可选) 如果你觉得往上滑的时候，导航栏弹出来的动画太慢，可以把这行加上 */
+/* #nav { transition: none !important; } */
+
+/* =========================
+   页脚美化：去蓝条 + 透明化
+   ========================= */
+
+#footer {
+    /* 1. 核心：去掉那个蓝色的背景色 */
+    background: transparent !important;
+    background-color: transparent !important;
+    
+    /* 2. 去掉可能存在的顶部边框线 */
+    box-shadow: none !important; 
+    
+    /* 3. (可选) 如果你觉得文字看不清，可以加一点点磨砂感，不用就写 none */
+    backdrop-filter: none !important; 
+}
+
+/* 4. 强制把页脚的文字变成白色 */
+/* 因为去掉了蓝色背景，如果你的壁纸是深色的，黑字就看不见了 */
 #footer-wrap, 
 #footer-wrap a {
-    color: #ffffff !important; /* 纯白文字 */
-    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.8); */ /* (可选) 如果壁纸太花，把这行前面的注释去掉，加点阴影能看清 */
+    color: #ffffff !important; 
+}
+
+/* 5. 针对那个蓝色可能是伪元素做的情况，补一刀 */
+#footer::before {
+    background: transparent !important;
 }
