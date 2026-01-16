@@ -24,8 +24,8 @@ menu:
   #   Movie: /movies/ || fas fa-video
   # 文字变色 + 加粗 + 图标放大
   # 图标会像心脏一样跳动
-  魔法AR: /magic/ || fas fa-magic fa-lg fa-beat
-  AI自定人格聊天: /chat/ || fas fa-robot fa-lg fa-beat
+  魔法AR: /magic/ || fas fa-magic 
+  AI自定人格聊天: /chat/ || fas fa-robot 
 
 # --------------------------------------
 # Code Blocks Settings
